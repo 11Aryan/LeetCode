@@ -20,6 +20,8 @@ public:
         ListNode*forward=NULL;
         int count=0;
         int len=0;
+        
+        //agar reverse karne ke liye bache element kam h k ki value se to mat karo
         while(cur!=NULL)
         {
             cur=cur->next;
@@ -28,6 +30,8 @@ public:
         cur=head;
         if(len<k)
             return cur;
+        
+        
         while(cur!=NULL && count<k)
         {
             forward=cur->next;
@@ -36,10 +40,10 @@ public:
             cur=forward;
             count++;
         }
-        if(forward!=NULL)
-        {
+        //if(forward!=NULL)
+        //
             head->next=reverseKGroup(forward,k);
-        }
+        //
         
                                                     
          return prev;                                           
