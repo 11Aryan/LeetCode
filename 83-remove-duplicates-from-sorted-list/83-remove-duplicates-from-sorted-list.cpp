@@ -14,9 +14,9 @@ public:
         ListNode*cur=head;
         if(head==NULL)
             return NULL;
-        while(cur!=NULL)
+        while(cur->next!=NULL)
         {
-            if(cur->next!=NULL && cur->val==cur->next->val)
+            if(cur->val==cur->next->val)
             {
                 ListNode*New=cur->next;
                
