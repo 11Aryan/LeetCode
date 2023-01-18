@@ -56,8 +56,9 @@ class Solution
             if(fast)
             {
                 fast=fast->next;
-            }    
+               
             slow=slow->next;
+            }
             if(fast==slow)
              return slow;
         }
