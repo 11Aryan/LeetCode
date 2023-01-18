@@ -56,9 +56,8 @@ class Solution
             if(fast)
             {
                 fast=fast->next;
-            }
-                slow=slow->next;
-         
+            }    
+            slow=slow->next;
             if(fast==slow)
              return slow;
         }
@@ -69,11 +68,11 @@ class Solution
      //Function to find first node if the linked list has a loop.
     int findFirstNode(Node* head)
     {  
-        Node*intersection=cycle(head);
+        Node*intersection=cycle(head);//floyd cycle detectionn
         Node*slow=head;
-        if(intersection==NULL)
+        if(intersection==NULL)   
          return -1;
-        while(slow!=intersection)
+        while(slow!=intersection) //starting point of loop
         {
             slow=slow->next;
             intersection=intersection->next;
