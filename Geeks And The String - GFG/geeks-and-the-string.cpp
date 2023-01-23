@@ -17,10 +17,10 @@ class Solution {
                ans.push(s[i]);
             
         }
-        string aa="";
-        string a="-1";
+        string aa="-1";
         if(ans.size()==0)
-          return a;
+          return aa;
+        aa="";  
         while(ans.size()>0)
         {
             aa+=ans.top();
