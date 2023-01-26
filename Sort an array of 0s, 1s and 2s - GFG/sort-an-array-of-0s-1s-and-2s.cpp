@@ -11,7 +11,27 @@ class Solution
     void sort012(int a[], int n)
     {
         // code here 
-        sort(a,a+n);
+        int low=0;
+        int high=n-1;
+        int mid=0;
+        while(mid<=high)
+        {
+            if(a[mid]==0)
+            {
+                swap(a[mid],a[low]);
+                mid++;
+                low++;
+            }
+            else if(a[mid]==2)
+            {
+                swap(a[mid],a[high]);
+                high--;
+            }
+            else
+            {
+                mid++;
+            }
+        }
     }
     
 };
