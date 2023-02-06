@@ -6,7 +6,47 @@ using namespace std;
 class Solution
 {
 	public:
-	//Function to return list containing vertices in Topological order.
+	//Function to return list containing vertices in Topological order. 
+	
+	//Using kahns algorithm(bfs)
+	vector<int> topoSort(int V, vector<int> adj[]) 
+	{
+	    // code here
+	    queue<int>q;
+	    vector<int>indegree(V);
+	    for(int i=0;i<V;i++)
+	    {
+	        for(auto j:adj[i])
+	        {
+	            indegree[j]++;
+	        }
+	    }
+	    vector<int>ans;
+	    for(int i=0;i<V;i++)
+	    {
+	        if(indegree[i]==0)
+	          q.push(i);
+	    }
+	    
+	    while(!q.empty())
+	    {
+	        int front=q.front();
+	        q.pop();
+	        ans.push_back(front);
+             
+            for(auto neighbour:adj[front])
+            {
+                indegree[neighbour]--;
+                if(indegree[neighbour]==0)
+                   q.push(neighbour);
+            }
+	    }
+	    return ans;
+	}
+	
+	
+	/* 
+	                        USING DFS
 	void toposort(int node,unordered_map<int,bool>&visited,stack<int>&s,vector<int>adj[])
 	{
 	    visited[node]=true;
@@ -36,7 +76,7 @@ class Solution
 	        s.pop();
 	    }
 	    return ans;
-	}
+	}*/
 };
 
 //{ Driver Code Starts.
