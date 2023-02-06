@@ -6,7 +6,51 @@ using namespace std;
 class Solution {
   public:
     // Function to detect cycle in a directed graph.
-    bool iscycle(int node,unordered_map<int,bool>&visited,unordered_map<int,bool>&dfsvisited,vector<int>adj[])
+    bool isCyclic(int V, vector<int> adj[]) {
+        // code here
+        vector<int>indegree(V);
+        queue<int>q;
+        
+        for(int i=0;i<V;i++)
+        {
+            for(auto j:adj[i])
+            {
+                indegree[j]++;
+            }
+        }
+        
+        for(int i=0;i<V;i++)
+        {
+            if(indegree[i]==0)
+            {
+                q.push(i);
+            }
+        }
+        
+        int count=0;
+        while(!q.empty())
+        {
+            int front=q.front();
+            q.pop();
+            count++;
+            
+            for(auto neighbour:adj[front])
+            {
+                indegree[neighbour]--;
+                if(indegree[neighbour]==0)
+                {
+                    q.push(neighbour);
+                }
+            }
+            
+        }
+        if(count==V)
+          return false;
+        return true;  
+    }
+    
+   /* USING DFS
+   bool iscycle(int node,unordered_map<int,bool>&visited,unordered_map<int,bool>&dfsvisited,vector<int>adj[])
     {
         visited[node]=true;
         dfsvisited[node]=true;
@@ -45,6 +89,7 @@ class Solution {
         }
     return false;
     }
+    */
 };
 
 //{ Driver Code Starts.
