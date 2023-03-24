@@ -93,7 +93,7 @@ class Solution
           
         
     }
-    struct Node* add(struct Node* l1, struct Node* l2)
+    struct Node* add(struct Node* l1, struct Node* l2,struct Node*temp)
     {
         int carry=0;
         struct Node* ansHead=NULL;
@@ -111,7 +111,10 @@ class Solution
             int sum=carry+v1+v2;
             int digit=sum%10;
             
-            insertTail(ansHead,ansTail,digit);
+            //insertTail(ansHead,ansTail,digit);
+            struct Node* node=new Node(sum%10);
+            temp->next=node;
+            temp=temp->next;
             
             carry=sum/10;
             
@@ -127,13 +130,16 @@ class Solution
     struct Node* addTwoLists(struct Node* first, struct Node* second)
     {
         // code here
+        struct Node*dummy=new Node(0);
+        struct Node*temp=dummy;
         first=reverse(first);
         second=reverse(second);
         
-        struct Node*ans=add(first,second);
-        ans=reverse(ans);
-        
-        return ans;
+        struct Node*ans=add(first,second,temp);
+        //ans=reverse(ans);
+        //dummy=dummy->next;
+        dummy=reverse(dummy->next);
+        return dummy;
     }
 };
 
