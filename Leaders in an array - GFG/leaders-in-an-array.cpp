@@ -13,23 +13,17 @@ class Solution{
     public:
     vector<int> leaders(int a[], int n){
         // Code here
-        stack<int>s;
         vector<int>ans;
-        s.push(-1);
+        int maxi=INT_MIN;
         for(int i=n-1;i>=0;i--)
         {
-            if(a[i]>=s.top())
-            {
-                ans.push_back(a[i]);
-                s.push(a[i]);
-            }
-            else
-            {
-                continue;
-            }
+             if(a[i]>=maxi)
             
+            {
+              ans.push_back(a[i]);
+              maxi=a[i];
+            }
         }
-
         reverse(ans.begin(),ans.end());
         return ans;
     }
