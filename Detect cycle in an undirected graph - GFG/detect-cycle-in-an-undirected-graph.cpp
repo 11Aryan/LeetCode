@@ -4,29 +4,28 @@ using namespace std;
 
 // } Driver Code Ends
 class Solution {
-    bool cycledetection(int i,unordered_map<int,bool>&visited,vector<int> adj[])
+    bool detect(int src,vector<int> adj[],int vis[])
     {
-        unordered_map <int,int>parent;
-        parent[i]=-1;
-        visited[i]=1;
-        queue<int>q;
-        q.push(i);
+        vis[src]=1;
+        queue<pair<int,int>>q;
+        q.push({src,-1});
         while(!q.empty())
         {
-            int front=q.front();
+            int node=q.front().first;
+            int parent=q.front().second;
             q.pop();
-            for(auto x:adj[front])
+            for(auto neighbour:adj[node])
             {
-                if(visited[x]==true&&x!=parent[front])
+                if(!vis[neighbour])
+                {
+                    vis[neighbour]=1;
+                    q.push({neighbour,node});
+                }
+                else if(parent!=neighbour)
                 {
                     return true;
                 }
-                else if(!visited[x])
-                {
-                    q.push(x);
-                    visited[x]=1;
-                    parent[x]=front;
-                }
+                
             }
         }
         return false;
@@ -35,15 +34,14 @@ class Solution {
     // Function to detect cycle in an undirected graph.
     bool isCycle(int V, vector<int> adj[]) {
         // Code here
-        unordered_map<int,bool>visited;
+        int vis[V]={0};
         for(int i=0;i<V;i++)
-        {
-            if(!visited[i])
-            {
-                bool ans=cycledetection(i,visited,adj);
-                if(ans)
-                 return true;
-            }
+        {   
+            if(!vis[i])
+          { 
+            if(detect(i,adj,vis))
+               return true;
+          }
         }
         return false;
     }
