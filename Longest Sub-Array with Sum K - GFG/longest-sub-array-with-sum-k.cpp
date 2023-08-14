@@ -9,6 +9,8 @@ class Solution{
     int lenOfLongSubarr(int A[],  int N, int K) 
     {   
         // Complete the function
+        
+        // https://www.youtube.com/watch?v=frf7qxiN2qU
         int len=0;
         unordered_map<int,int>m;
         int sum=0;
