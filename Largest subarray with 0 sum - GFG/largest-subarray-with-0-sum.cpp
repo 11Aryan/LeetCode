@@ -14,24 +14,18 @@ class Solution{
     {   
         // Your code here
         unordered_map<int,int>m;
-        int maxi=0;int sum=0;
-        for(int i=0;i<n;i++)
+        int sum=0;
+        int len=0;
+        for(int i=0;i<A.size();i++)
         {
             sum+=A[i];
-            if(sum==0) maxi=i+1;
-            else
-            {
-                if(m.find(sum)!=m.end())
-                {
-                    maxi=max(maxi,i-m[sum]);
-                }
-                else
-                {
-                    m[sum]=i;
-                }
-            }
+            
+            if(sum==0) len=i+1;
+            if(m.find(sum-0)!=m.end()) len=max(len,i-m[sum]);
+            
+            if(m.find(sum)==m.end()) m[sum]=i;
         }
-        return maxi;
+        return len;
     }
 };
 
